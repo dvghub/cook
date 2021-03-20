@@ -4,6 +4,11 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">{{ recipe.name }}</h5>
+                    <p>
+                        <span>{{ recipe.preparationTime }}</span>
+                        <span *ngIf="recipe.preparationTime !== null && recipe.waitTime !== null"> | </span>
+                        <span>{{ recipe.waitTime }}</span>
+                    </p>
                 </div>
                 <div class="card-footer">
                     <span *ngFor="let tag of recipe.tags">
