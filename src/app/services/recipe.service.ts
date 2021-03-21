@@ -11,6 +11,10 @@ export class RecipeService {
     private http: HttpClient
   ) { }
 
+  getRecipe(id: number) {
+    return this.http.get<Recipe>(environment.apiUrl + '/recipe/' + id);
+  }
+
   getRecipes() {
     return this.http.get<Recipe[]>(environment.apiUrl + '/recipes');
   }
