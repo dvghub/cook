@@ -1,0 +1,30 @@
+<div class="container-md py-5">
+    <h4>{{ recipe.name }}</h4>
+    <span>{{ recipe.people }} p</span>
+    <span *ngIf="recipe.people !== null && recipe.preparationTime !== null"> | </span>
+    <span>{{ recipe.preparationTime }}</span>
+    <span *ngIf="recipe.preparationTime !== null && recipe.waitTime !== null"> | </span>
+    <span>{{ recipe.waitTime }}</span>
+    <hr/>
+    <span *ngFor="let tag of recipe.tags">
+        <span class="badge bg-minty mr-1">{{ tag.name }}</span>
+    </span>
+    <hr/>
+    <ul class="list-group list-group-flush">
+        <li *ngFor="let ingredient of recipe.ingredients" class="list-group-item">
+            {{ ingredient.amount }} {{ ingredient.quantity }} {{ ingredient.name }}
+        </li>
+    </ul>
+    <hr/>
+    <ol>
+        <li *ngFor="let step of recipe.steps.sort(sortSteps)">
+            {{ step.text }}
+        </li>
+    </ol>
+    <hr/>
+    <ul class="list-group list-group-flush">
+        <li *ngFor="let extra of recipe.extras" class="list-group-item">
+            {{ extra.text }}
+        </li>
+    </ul>
+</div>
