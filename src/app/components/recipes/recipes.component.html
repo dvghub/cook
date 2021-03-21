@@ -1,7 +1,7 @@
 <div class="container py-5">
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
         <div class="col" *ngFor="let recipe of recipes">
-            <div class="card">
+            <div class="card cursor-pointer" routerLink="/recipe/{{ recipe.id }}">
                 <div class="card-body">
                     <h5 class="card-title">{{ recipe.name }}</h5>
                     <p>

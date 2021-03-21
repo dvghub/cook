@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { RecipesComponent } from './components/recipes/recipes.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { ShowRecipeComponent } from './components/show-recipe/show-recipe.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RecipesComponent,
-    NavbarComponent
+    NavbarComponent,
+    ShowRecipeComponent
   ],
   imports: [
     BrowserModule,
