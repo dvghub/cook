@@ -7,18 +7,28 @@ import { RecipesComponent } from './components/recipes/recipes.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ShowRecipeComponent } from './components/show-recipe/show-recipe.component';
+import { EditRecipeComponent } from './components/edit-recipe/edit-recipe.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgbAlertModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
     AppComponent,
     RecipesComponent,
     NavbarComponent,
-    ShowRecipeComponent
+    ShowRecipeComponent,
+    EditRecipeComponent
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgbModule,
+    NgbAlertModule
   ],
   providers: [],
   bootstrap: [AppComponent]

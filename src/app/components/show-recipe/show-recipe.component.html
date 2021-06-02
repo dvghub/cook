@@ -1,30 +1,38 @@
 <div class="container-md py-5">
-    <h4>{{ recipe.name }}</h4>
-    <span>{{ recipe.people }} p</span>
-    <span *ngIf="recipe.people !== null && recipe.preparationTime !== null"> | </span>
-    <span>{{ recipe.preparationTime }}</span>
-    <span *ngIf="recipe.preparationTime !== null && recipe.waitTime !== null"> | </span>
-    <span>{{ recipe.waitTime }}</span>
-    <hr/>
-    <span *ngFor="let tag of recipe.tags">
-        <span class="badge bg-minty mr-1">{{ tag.name }}</span>
-    </span>
-    <hr/>
-    <ul class="list-group list-group-flush">
-        <li *ngFor="let ingredient of recipe.ingredients" class="list-group-item">
-            {{ ingredient.amount }} {{ ingredient.quantity }} {{ ingredient.name }}
-        </li>
-    </ul>
-    <hr/>
-    <ol>
-        <li *ngFor="let step of recipe.steps.sort(sortSteps)">
-            {{ step.text }}
-        </li>
-    </ol>
-    <hr/>
-    <ul class="list-group list-group-flush">
-        <li *ngFor="let extra of recipe.extras" class="list-group-item">
-            {{ extra.text }}
-        </li>
-    </ul>
+    <div class="d-md-flex">
+        <div class="col col-md-6 px-3">
+            <h4>{{ recipe.name }} <a class="text-secondary text-decoration-none" routerLink="/recipe/{{ recipe.id }}/edit"><i class="bi bi-pencil smaller align-middle"></i></a></h4>
+            <span>{{ recipe.people }} <span *ngIf="recipe.people !== null">p</span></span>
+            <span *ngIf="recipe.people !== null && recipe.people !== 0
+            && recipe.preparationTime !== null && recipe.preparationTime !== ''"> | </span>
+            <span>{{ recipe.preparationTime }}</span>
+            <span *ngIf="recipe.preparationTime !== null && recipe.preparationTime !== ''
+            && recipe.waitTime !== null && recipe.waitTime !== ''"> | </span>
+            <span>{{ recipe.waitTime }}</span>
+            <hr/>
+            <span *ngFor="let tag of recipe.tags">
+                <span class="badge bg-minty mr-1">{{ tag.name }}</span>
+            </span>
+            <hr/>
+            <ul class="list-group list-group-flush">
+                <li *ngFor="let ingredient of recipe.ingredients" class="list-group-item">
+                    {{ ingredient.amount }} {{ ingredient.quantity }} {{ ingredient.name }}
+                </li>
+            </ul>
+            <hr class="d-block d-md-none"/>
+        </div>
+        <div class="col col-md-6 px-3">
+            <ol>
+                <li *ngFor="let step of recipe.steps">
+                    {{ step.text }}
+                </li>
+            </ol>
+            <hr/>
+            <ul class="list-group list-group-flush">
+                <li *ngFor="let extra of recipe.extras" class="list-group-item">
+                    {{ extra.text }}
+                </li>
+            </ul>
+        </div>
+    </div>
 </div>

@@ -11,3 +11,25 @@
 .cursor-pointer {
   cursor: pointer;
 }
+
+.w-10 {
+  width: 10%;
+}
+
+.w-5 {
+  width: 5%;
+}
+
+.clear-right {
+  clear: right;
+}
+
+@media (min-width:960px) {
+  .w-md-75 {
+    width: 75%;
+  }
+}
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
+@import '~bootstrap-icons/font/bootstrap-icons.css';
