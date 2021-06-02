@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Recipe } from '../../interfaces/recipe';
 import { RecipeService } from '../../services/recipe.service';
 import { ActivatedRoute } from '@angular/router';
-import { Step } from '../../interfaces/step';
 
 @Component({
   selector: 'app-show-recipe',
@@ -15,21 +14,14 @@ export class ShowRecipeComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private service: RecipeService
-  ) { }
-
-  ngOnInit(): void {
+  ) {
     const id = +this.route.snapshot.paramMap.get('id');
-    this.service.getRecipe(id).subscribe((data: Recipe) => this.recipe = data);
+    this.getRecipe(id).then(data => this.recipe = data);
   }
 
-  sortSteps(a: Step, b: Step): number {
-    switch (true) {
-      case a.index < b.index:
-        return -1;
-      case a.index > b.index:
-        return 1;
-      default:
-        return 0;
-    }
+  ngOnInit(): void { }
+
+  async getRecipe(id: number): Promise<Recipe> {
+    return await this.service.getRecipe(id);
   }
 }

@@ -6,7 +6,8 @@
                     <h5 class="card-title">{{ recipe.name }}</h5>
                     <p>
                         <span>{{ recipe.preparationTime }}</span>
-                        <span *ngIf="recipe.preparationTime !== null && recipe.waitTime !== null"> | </span>
+                        <span *ngIf="recipe.preparationTime !== null && recipe.preparationTime !== ''
+                        && recipe.waitTime !== null && recipe.waitTime !== ''"> | </span>
                         <span>{{ recipe.waitTime }}</span>
                     </p>
                 </div>

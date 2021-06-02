@@ -1,0 +1,87 @@
+<div class="container-md py-5">
+    <p *ngIf="alert">
+        <ngb-alert [dismissible]="false" [type]="alert.type">{{ alert.message }}</ngb-alert>
+    </p>
+
+    <form (ngSubmit)="submit()" [formGroup]="recipeForm">
+        <div class="d-md-flex">
+            <div class="col col-md-6 px-3">
+                <div class="form-group mb-3">
+                    <label for="name">name</label>
+                    <input type="text" class="form-control" id="name" formControlName="name" required>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="people">people</label>
+                    <input type="number" class="form-control" id="people" formControlName="people">
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="preparationTime">prep time</label>
+                    <input type="text" class="form-control" id="preparationTime" formControlName="preparationTime">
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="waitTime">wait time</label>
+                    <input type="text" class="form-control" id="waitTime" formControlName="waitTime">
+                </div>
+            </div>
+
+            <div class="col col-md-6 px-3">
+                <div class="form-group mb-5">
+                    <label>ingredients</label>
+                    <div formArrayName="ingredients" *ngFor="let ingredient of ingredients.controls; let i = index">
+                        <div [formGroupName]="i" class="input-group">
+                            <input type="number" class="form-control" formControlName="amount" placeholder="0" aria-label="amount" required>
+                            <input type="text" class="form-control" formControlName="quantity" placeholder="quantity" aria-label="quantity">
+                            <input type="text" class="form-control w-50 w-md-75" formControlName="name" placeholder="name" aria-label="name" required>
+                            <button class="btn btn-outline-secondary" (click)="removeIngredient(i)">-</button>
+                        </div>
+                    </div>
+                    <button type="button" class="btn float-end" (click)="addIngredient()">+</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="d-md-flex mt-md-5">
+            <div class="col col-md-6 px-3">
+                <div class="form-group mb-5">
+                    <label>steps</label>
+                    <div formArrayName="steps" *ngFor="let step of steps.controls; let i = index">
+                        <div [formGroupName]="i" class="input-group">
+                            <input type="text" class="form-control" formControlName="text" placeholder="step" aria-label="step" required>
+                            <button class="btn btn-outline-secondary" (click)="removeStep(i)">-</button>
+                        </div>
+                    </div>
+                    <button type="button" class="btn float-end" (click)="addStep()">+</button>
+                </div>
+            </div>
+
+            <div class="col col-md-6 px-3">
+                <div class="form-group mb-5">
+                    <label>extras</label>
+                    <div formArrayName="extras" *ngFor="let extra of extras.controls; let i = index">
+                        <div [formGroupName]="i" class="input-group">
+                            <input type="text" class="form-control" formControlName="text" placeholder="tips, hints, notes?" aria-label="extra" required>
+                            <button class="btn btn-outline-secondary" (click)="removeExtra(i)">-</button>
+                        </div>
+                    </div>
+                    <button type="button" class="btn float-end" (click)="addExtra()">+</button>
+                </div>
+
+                <div class="form-group mb-5">
+                    <label>tags</label>
+                    <div formArrayName="tags" *ngFor="let tag of tags.controls; let i = index">
+                        <div [formGroupName]="i" class="input-group">
+                            <input type="text" class="form-control" formControlName="name" placeholder="vegetarian, drink, dessert?" aria-label="tag" required>
+                            <button class="btn btn-outline-secondary" (click)="removeTag(i)">-</button>
+                        </div>
+                    </div>
+                    <button type="button" class="btn float-end" (click)="addTag()">+</button>
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" class="btn bg-minty float-end clear-right mt-3">save</button>
+    </form>
+</div>
