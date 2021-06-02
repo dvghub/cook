@@ -1,21 +1,19 @@
-<div class="container py-5">
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
-        <div class="col" *ngFor="let recipe of recipes">
-            <div class="card cursor-pointer" routerLink="/recipe/{{ recipe.id }}">
-                <div class="card-body">
-                    <h5 class="card-title">{{ recipe.name }}</h5>
-                    <p>
-                        <span>{{ recipe.preparationTime }}</span>
-                        <span *ngIf="recipe.preparationTime !== null && recipe.preparationTime !== ''
+<div class="container py-5 masonry">
+    <div class="w-100 d-inline-block mb-3" *ngFor="let recipe of recipes">
+        <div class="card cursor-pointer" routerLink="/recipe/{{ recipe.id }}">
+            <div class="card-body">
+                <h5 class="card-title">{{ recipe.name }}</h5>
+                <p>
+                    <span>{{ recipe.preparationTime }}</span>
+                    <span *ngIf="recipe.preparationTime !== null && recipe.preparationTime !== ''
                         && recipe.waitTime !== null && recipe.waitTime !== ''"> | </span>
-                        <span>{{ recipe.waitTime }}</span>
-                    </p>
-                </div>
-                <div class="card-footer">
-                    <span *ngFor="let tag of recipe.tags">
-                        <span class="badge bg-minty mr-1">{{ tag.name }}</span>
-                    </span>
-                </div>
+                    <span>{{ recipe.waitTime }}</span>
+                </p>
+            </div>
+            <div class="card-footer">
+                <span *ngFor="let tag of recipe.tags">
+                    <span class="badge bg-minty mr-1">{{ tag.name }}</span>
+                </span>
             </div>
         </div>
     </div>
