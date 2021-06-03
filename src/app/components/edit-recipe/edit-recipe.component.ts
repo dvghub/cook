@@ -2,11 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RecipeService } from '../../services/recipe.service';
 import { Recipe } from '../../interfaces/recipe';
-import { Step } from '../../interfaces/step';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Ingredient } from '../../interfaces/ingredient';
-import { Extra } from '../../interfaces/extra';
-import { Tag } from '../../interfaces/tag';
 import { Alert } from '../../interfaces/alert';
 
 @Component({
@@ -68,7 +64,7 @@ export class EditRecipeComponent implements OnInit {
     const rn = (this.recipe === null);
 
     this.recipeForm = this.fb.group({
-      id: [rn ? null : this.recipe.id],
+      id: [rn ? 0 : this.recipe.id],
       name: [rn ? null : this.recipe.name, Validators.required],
       people: rn ? null : this.recipe.people,
       preparationTime: rn ? null : this.recipe.preparationTime,
@@ -86,7 +82,7 @@ export class EditRecipeComponent implements OnInit {
     if (error.error instanceof ErrorEvent) {
       message = `Error: ${ error.error.message }`;
     } else {
-      message = 'Error ' + error.status + ': ${err.message}';
+      message = `${  error.status }: ${ error.error.message }`;
     }
     this.alert = { message, type: 'danger' };
   }

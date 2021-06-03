@@ -25,8 +25,11 @@ export class RecipeService {
     return this.http.get<Recipe[]>(environment.apiUrl + '/recipes');
   }
 
-  postRecipe(recipe) {
-    console.log(environment.apiUrl + '/recipes/' + recipe.id);
+  postRecipe(recipe: Recipe) {
     return this.http.post(environment.apiUrl + '/recipes/' + recipe.id, JSON.stringify(recipe));
+  }
+
+  deleteRecipe(id: number) {
+    return this.http.delete(environment.apiUrl + '/recipes/' + id);
   }
 }
