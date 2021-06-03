@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Recipe } from '../../interfaces/recipe';
 import { RecipeService } from '../../services/recipe.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Alert } from '../../interfaces/alert';
 
 @Component({
   selector: 'app-show-recipe',
@@ -10,18 +11,24 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ShowRecipeComponent implements OnInit {
   recipe: Recipe;
+  alert: Alert = null;
 
   constructor(
+    private router: Router,
     private route: ActivatedRoute,
     private service: RecipeService
   ) {
     const id = +this.route.snapshot.paramMap.get('id');
-    this.getRecipe(id).then(data => this.recipe = data);
+    this.service.getRecipe(id).then(data => this.recipe = data);
   }
 
   ngOnInit(): void { }
 
-  async getRecipe(id: number): Promise<Recipe> {
-    return await this.service.getRecipe(id);
+  deleteRecipe(id: number) {
+    this.service.deleteRecipe(id).subscribe(() => {
+      this.router.navigate(['/recipes']);
+    }, error => {
+      this.alert = { message: 'Recipe couldn\'t be deleted, error: ' + error + '!', type: 'danger' };
+    });
   }
 }
